@@ -12,11 +12,11 @@ public class JavaExercises {
      * The first row contains 1 star, the second 2 stars, and so on.
      */
     public static void starTriangle() {
-        String stars = "";
-        for (int i = 0; i < 5; i++) {
-            stars += "*";
-            System.out.println(stars);
-        }
+        System.out.println("    *");
+        System.out.println("   **");
+        System.out.println("  ***");
+        System.out.println(" ****");
+        System.out.println("*****");
     }
 
     /**
@@ -26,7 +26,7 @@ public class JavaExercises {
     public static void printIndexed(String s) {
         String result = "";
         for (int i = 0; i < s.length(); i++) {
-            result += s.charAt(i) + s.length() - i;
+            result += String.valueOf(s.charAt(i)) + String.valueOf(s.length()-1 - i);
         }
         System.out.println(result);
     }
