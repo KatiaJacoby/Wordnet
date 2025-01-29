@@ -9,7 +9,7 @@ public class MapExercises {
     public static Map<Character, Integer> letterToNum() {
         Map<Character, Integer> map = new HashMap<>();
         int number = 1;
-        for(char character = 'a'; character <= 'z'; character++){
+        for (char character = 'a'; character <= 'z'; character++) {
             map.put(character, number);
             number++;
         }
@@ -21,21 +21,21 @@ public class MapExercises {
      */
     public static Map<Integer, Integer> squares(List<Integer> nums) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i: nums){
-            map.put(i, (int)Math.pow(i, 2));
+        for (int i: nums) {
+            map.put(i, (int) Math.pow(i, 2));
         }
         return map;
     }
 
     /** Returns a map of the counts of all words that appear in a list of words. */
     public static Map<String, Integer> countWords(List<String> words) {
-        Map<String, Integer>map = new HashMap<>();
-        for (String word: words){
+        Map<String, Integer> map = new HashMap<>();
+        for (String word: words) {
             if (map.get(word) == null) {
                 map.put(word, 1);
-            }else {
+            } else {
                 int amount = map.get(word);
-                map.put(word, amount+1);
+                map.put(word, amount + 1);
 
             }
 

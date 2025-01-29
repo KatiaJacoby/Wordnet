@@ -17,8 +17,7 @@ public class DessertTest {
     @Order(0)
     @DisplayName("Test Dessert class")
     public void testDessert() {
-        // TODO: Uncomment this test when you've created and completed Dessert.java!
-        // TODO: Delete lines 24 and 60 of this file to uncomment.
+
         boolean completed = false;
 
 
@@ -27,7 +26,6 @@ public class DessertTest {
 
         Dessert brownie = new Dessert(1, 2);
         brownie.printDessert();
-
         assertWithMessage("Are your static and instance variables set correctly?")
                 .that(outContent.toString().trim())
                 .isEqualTo("1 2 1");

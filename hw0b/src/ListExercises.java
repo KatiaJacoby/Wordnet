@@ -6,7 +6,7 @@ public class ListExercises {
     public static int sum(List<Integer> L) {
         int sum = 0;
         for (int i: L) {
-            sum+=i;
+            sum += i;
         }
         return sum;
     }
@@ -26,9 +26,9 @@ public class ListExercises {
     /** Returns a list containing the common item of the two given lists */
     public static List<Integer> common(List<Integer> L1, List<Integer> L2) {
         List<Integer> commons = new ArrayList<>();
-        for (int i: L1){
-            for (int k: L2){
-                if (i == k){
+        for (int i: L1) {
+            for (int k: L2) {
+                if (i == k) {
                     commons.add(i);
                 }
             }
@@ -40,9 +40,9 @@ public class ListExercises {
     /** Returns the number of occurrences of the given character in a list of strings. */
     public static int countOccurrencesOfC(List<String> words, char c) {
         int sum = 0;
-        for (String i: words){
-            for (int k = 0; k < i.length(); k++){
-                if (c == i.charAt(k)){
+        for (String i: words) {
+            for (int k = 0; k < i.length(); k++) {
+                if (c == i.charAt(k)) {
                     sum++;
 
                 }
