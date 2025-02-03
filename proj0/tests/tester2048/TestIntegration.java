@@ -17,6 +17,7 @@ import static tester2048.TestUtils.checkTilt;
  */
 @Timeout(value = 60, threadMode = Timeout.ThreadMode.SEPARATE_THREAD)
 public class TestIntegration {
+
     /*
      * ******************
      * *  TESTING TILT  *
