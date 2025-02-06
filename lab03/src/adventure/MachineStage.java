@@ -81,10 +81,15 @@ public class MachineStage implements AdventureStage {
      * Returns the maximum integer between a and b.
      */
     public static int mysteryMax(int a, int b) {
-        int w = (b - a) >> 31;
-        int z = ~(b - a) >> 31;
-
-        int max = b & w | a & z;
+       int w = (b - a) >> 31;
+       int z = (a - b) >> 31;
+       int max;
+       if (w>z) {
+           max = b;
+       }else{
+           max = a;
+       }
+        //int max = b & w | a & z;
         return max;
     }
 
@@ -116,6 +121,7 @@ public class MachineStage implements AdventureStage {
             System.out.println("ERROR! Array lengths don't match");
             return null;
         }
+
         int[] returnArray = new int[a.length];
         for (int i = 0; i < a.length; i += 1) {
             int biggerValue = mysteryMax(a[i], b[i]);
@@ -132,7 +138,7 @@ public class MachineStage implements AdventureStage {
         int i = 0;
         int sum = 0;
         while (i < x.length) {
-            sum = sum + mysteryAdd(sum, x[i]);
+            sum = sum + mysteryAdd(0, x[i]);
             i = i + 1;
         }
         return sum;
