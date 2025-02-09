@@ -56,5 +56,47 @@ public class LinkedListDeque61BTest {
          assertThat(lld1.toList()).containsExactly(-2, -1, 0, 1, 2).inOrder();
      }
 
+     @Test
+     public void addLastthenAddFirst(){
+         Deque61B<Integer> list = new LinkedListDeque61B();
+
+         list.addLast(3);
+         list.addLast(4);
+         list.addFirst(2);
+         list.addFirst(1);
+
+         assertThat(list.toList()).containsExactly(1,2,3,4).inOrder();
+     }
+
+     @Test
+     public void checkifEmptyTest(){
+         Deque61B<Integer> list = new LinkedListDeque61B();
+         boolean condition = list.isEmpty();
+         assert condition;
+     }
+
+     @Test
+    public void findSizeTest(){
+         Deque61B<Integer> list = new LinkedListDeque61B();
+         list.addLast(3);
+         list.addLast(4);
+         list.addFirst(2);
+         list.addFirst(1);
+         assertThat(list.size()).isEqualTo(4);
+     }
+
+     @Test
+     public void checkGetTest(){
+         Deque61B<Integer> list = new LinkedListDeque61B();
+         list.addLast(3);
+         list.addLast(4);
+         list.addFirst(2);
+         list.addFirst(1);
+         assertThat(list.get(2)).isEqualTo(3);
+         assertThat(list.get(0)).isEqualTo(1);
+         assertThat(list.get(4)).isEqualTo(null);
+     }
+
+
     // Below, you'll write your own tests for LinkedListDeque61B.
 }

@@ -1,11 +1,12 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class LinkedListDeque61B<T> implements Deque61B<T> {
     Node sentinel;
+    int size = 0;
     public LinkedListDeque61B() {
         this.sentinel = new Node(null);
     }
-
     class Node{
         T value;
         Node prev;
@@ -18,40 +19,51 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         }
     }
 
-
     @Override
     public void addFirst(T x) {
         Node add = new Node(x);
-        add.next = sentinel.next;
-        if (sentinel.prev == sentinel){
-            sentinel.prev = add;
-        }
+        add.next = this.sentinel.next;
+        this.sentinel.next.prev = add;
         this.sentinel.next = add;
         add.prev = this.sentinel;
+        size++;
+
     }
 
     @Override
     public void addLast(T x) {
         Node add = new Node(x);
-        sentinel.prev.next = add;
-        add.prev = sentinel.prev;
-        sentinel.prev = add;
-        add.next = sentinel;
+        this.sentinel.prev.next = add;
+        add.prev = this.sentinel.prev;
+        this.sentinel.prev = add;
+        add.next = this.sentinel;
+        size++;
     }
 
     @Override
     public List<T> toList() {
-        return List.of();
+        List<T> returnList = new ArrayList<>();
+        Node pointer = this.sentinel.next;
+        while (pointer != this.sentinel){
+            returnList.add(pointer.value);
+            pointer = pointer.next;
+        }
+        return returnList;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        Node pointer = this.sentinel;
+        if (pointer.next == pointer) {
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public int size() {
-        return 0;
+        return this.size;
     }
 
     @Override
@@ -66,7 +78,18 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T get(int index) {
-        return null;
+        Node pointer = this.sentinel;
+        int i = 0;
+        if (index > this.size()-1 || index < 0) {
+            return null;
+        }
+
+        while(pointer.next != this.sentinel && i < index){
+            pointer = pointer.next;
+            i++;
+        }
+
+        return (pointer.next.value);
     }
 
     @Override
