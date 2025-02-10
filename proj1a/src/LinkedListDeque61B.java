@@ -2,21 +2,23 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class LinkedListDeque61B<T> implements Deque61B<T> {
-    Node sentinel;
-    int size = 0;
-    public LinkedListDeque61B() {
-        this.sentinel = new Node(null);
-    }
-    class Node{
+    private class Node {
         T value;
         Node prev;
         Node next;
 
-        Node(T val){
+        Node(T val) {
             this.value = val;
             this.prev = this;
             this.next = this;
         }
+    }
+
+    private Node sentinel;
+    private int size = 0;
+
+    public LinkedListDeque61B() {
+        this.sentinel = new Node(null);
     }
 
     @Override
@@ -44,7 +46,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     public List<T> toList() {
         List<T> returnList = new ArrayList<>();
         Node pointer = this.sentinel.next;
-        while (pointer != this.sentinel){
+        while (pointer != this.sentinel) {
             returnList.add(pointer.value);
             pointer = pointer.next;
         }
@@ -56,7 +58,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
         Node pointer = this.sentinel;
         if (pointer.next == pointer) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -68,23 +70,41 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T removeFirst() {
-        return null;
+        T element = this.sentinel.next.value;
+        this.sentinel.next = this.sentinel.next.next;
+        this.sentinel.next.prev.next = this.sentinel.next.prev;
+        this.sentinel.next.prev.prev = this.sentinel.next.prev;
+        this.sentinel.next.prev = this.sentinel;
+        if (size > 0) {
+            this.size--;
+        }
+        return element;
+
     }
 
     @Override
     public T removeLast() {
-        return null;
+        T element = this.sentinel.prev.value;
+        this.sentinel.prev = this.sentinel.prev.prev;
+        this.sentinel.prev.next.prev = this.sentinel.prev.next;
+        this.sentinel.prev.next.next = this.sentinel.prev.next;
+        this.sentinel.prev.next = this.sentinel;
+        if (size > 0) {
+            this.size--;
+        }
+        return element;
+
     }
 
     @Override
     public T get(int index) {
         Node pointer = this.sentinel;
         int i = 0;
-        if (index > this.size()-1 || index < 0) {
+        if (index > this.size() - 1 || index < 0) {
             return null;
         }
 
-        while(pointer.next != this.sentinel && i < index){
+        while (pointer.next != this.sentinel && i < index) {
             pointer = pointer.next;
             i++;
         }
@@ -94,6 +114,22 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     @Override
     public T getRecursive(int index) {
-        return null;
+        Node pointer = this.sentinel;
+        if (index > this.size() - 1) {
+            return null;
+        }
+        return helper(pointer.next, index);
+
+    }
+
+
+    private T helper(Node pointer, int index) {
+        if (index == 0) {
+            return pointer.value;
+        }
+
+        return helper(pointer.next, index - 1);
     }
 }
+
+
