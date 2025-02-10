@@ -56,11 +56,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     @Override
     public boolean isEmpty() {
         Node pointer = this.sentinel;
-        if (pointer.next == pointer) {
-            return true;
-        } else {
-            return false;
-        }
+        return pointer.next == pointer;
     }
 
     @Override
@@ -115,11 +111,10 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     @Override
     public T getRecursive(int index) {
         Node pointer = this.sentinel;
-        if (index > this.size() - 1) {
+        if (index > this.size - 1 || index < 0) {
             return null;
         }
-        return helper(pointer.next, index);
-
+        return this.helper(pointer.next, index);
     }
 
 
