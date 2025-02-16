@@ -27,9 +27,7 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
         items[firstIndex] = x;
         firstIndex = Math.floorMod(firstIndex-1,capacity);
         size++;
-        if (size == capacity){
-            // call resize function
-        }
+        resize();
     }
 
 
@@ -38,10 +36,9 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
         items[lastIndex] = x;
         lastIndex = Math.floorMod(lastIndex+1,capacity);
         size++;
-        if (size == capacity){
-            // call resize function
-        }
+        resize();
     }
+
 
 
     @Override
@@ -74,6 +71,7 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
         items[index] = null;
         firstIndex = index;
         this.size--;
+        resize();
         return returnVal;
     }
 
@@ -87,6 +85,7 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
         items[index] = null;
         lastIndex = index;
         this.size--;
+        resize();
         return returnVal;
     }
 
@@ -96,7 +95,6 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
             return null;
         }
 
-
         int num = Math.floorMod(firstIndex+1+index,capacity);
         T value = items[num];
         return value;
@@ -105,5 +103,31 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
     @Override
     public T getRecursive(int index) {
         throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
+    }
+
+    public void resize() {
+        double rFactor = 1;
+        if (size >= 8) {
+            if ((size / items.length) < 0.25) {
+                rFactor = 0.5;
+            }
+            if (size == capacity) {
+                rFactor = 2;
+            }
+
+            int newSize = (int)(rFactor * capacity);
+            T[] newItems = (T[]) new Object[newSize];
+            int start = Math.floorMod(firstIndex+1,capacity);
+            int index = newSize/2-1;
+            firstIndex = index - 1;
+            for (int i = start; i < start + size; i++){
+                newItems[index] = items[i];
+                index++;
+            }
+            lastIndex = index + 1;
+            items = newItems;
+            capacity = items.length;
+
+        }
     }
 }

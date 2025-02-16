@@ -105,6 +105,11 @@ public class ArrayDeque61BTest {
         numbers.addFirst(2);
         numbers.addFirst(1);
         assertThat(numbers.toList()).containsExactly(1,2,1,2,3);
+        numbers.removeFirst();
+        numbers.removeFirst();
+        numbers.addLast(1);
+        numbers.addLast(1);
+        assertThat(numbers.toList()).containsExactly(1,2,3,1,1);
     }
 
     @Test
@@ -134,6 +139,21 @@ public class ArrayDeque61BTest {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         //@source I asked chatGPT how to test a method that throws an exception
         assertThrows(UnsupportedOperationException.class,() -> numbers.getRecursive(1));
+    }
+
+    @Test
+    public void resizeUpTest(){
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        assertThat(numbers.toList()).containsExactly(1,2,3,1,2,3,1,2,3);
     }
 
 }
