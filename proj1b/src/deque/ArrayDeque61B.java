@@ -2,6 +2,7 @@ package deque;
 
 import java.util.List;
 import java.lang.Math;
+import java.util.ArrayList;
 
 public class ArrayDeque61B<T> implements Deque61B<T>{
     private T[] items;
@@ -9,15 +10,13 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
     private int capacity;
     private int firstIndex;
     private int lastIndex;
-    private boolean empty;
 
     public ArrayDeque61B() {
         this.items = (T[]) new Object[8];
         this.size = 0;
         this.capacity = 8;
         this.firstIndex = 3;
-        this.lastIndex = 3;
-        this.empty = true;
+        this.lastIndex = 4;
     }
 
     @Override
@@ -25,55 +24,39 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
         // check if the array is maxed out --> call resize if it is
         // check if you need to loop around: do this by checking where the first and last pointers are
 
+        items[firstIndex] = x;
+        firstIndex = Math.floorMod(firstIndex-1,capacity);
+        size++;
         if (size == capacity){
             // call resize function
         }
-
-        if (empty){
-            items[firstIndex] = x;
-            empty = false;
-            size++;
-        } else if (firstIndex > 0){
-            items[firstIndex-1] = x;
-            firstIndex--;
-            size++;
-        } else if (firstIndex == 0){
-            items[capacity-1] = x;
-            firstIndex = capacity-1;
-            size++;
-        }
     }
+
 
     @Override
     public void addLast(T x) {
+        items[lastIndex] = x;
+        lastIndex = Math.floorMod(lastIndex+1,capacity);
+        size++;
         if (size == capacity){
             // call resize function
         }
-
-        if (empty){
-            items[lastIndex] = x;
-            empty = false;
-            size++;
-        } else if (lastIndex < capacity - 1){
-            items[lastIndex+1] = x;
-            lastIndex++;
-            size++;
-        } else if (lastIndex == capacity - 1){
-            items[0] = x;
-            lastIndex = 0;
-            size++;
-        }
     }
+
 
     @Override
     public List<T> toList() {
-        List<T> returnList = new ArrayDeque61B<>();
-        return List.of();
+       List<T> returnList = new ArrayList<>();
+       int start = Math.floorMod(firstIndex+1,capacity);
+       for (int i = start; i < start + size; i++){
+           returnList.add(items[i]);
+       }
+       return returnList;
     }
 
     @Override
     public boolean isEmpty() {
-        return(empty);
+        return(size==0);
     }
 
     @Override
@@ -83,21 +66,44 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
 
     @Override
     public T removeFirst() {
-        return null;
+        if (size == 0){
+            return null;
+        }
+        int index = Math.floorMod(firstIndex+1, capacity);
+        T returnVal = items[index];
+        items[index] = null;
+        firstIndex = index;
+        this.size--;
+        return returnVal;
     }
 
     @Override
     public T removeLast() {
-        return null;
+        if (size == 0){
+            return null;
+        }
+        int index = Math.floorMod(lastIndex-1,capacity);
+        T returnVal = items[index];
+        items[index] = null;
+        lastIndex = index;
+        this.size--;
+        return returnVal;
     }
 
     @Override
     public T get(int index) {
-        return this.items[index];
+        if (index > size-1 || index < 0){
+            return null;
+        }
+
+
+        int num = Math.floorMod(firstIndex+1+index,capacity);
+        T value = items[num];
+        return value;
     }
 
     @Override
     public T getRecursive(int index) {
-        return null;
+        throw new UnsupportedOperationException("No need to implement getRecursive for proj 1b");
     }
 }

@@ -10,6 +10,9 @@ import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
 import static com.google.common.truth.Truth.assertWithMessage;
+import static org.junit.Assert.assertThrows;
+
+import java.lang.UnsupportedOperationException;
 
 public class ArrayDeque61BTest {
 
@@ -30,15 +33,15 @@ public class ArrayDeque61BTest {
         numbers.addFirst(2);
         numbers.addFirst(3);
         numbers.addFirst(1);
-        assertThat(numbers.get(3)).isEqualTo(2);
-        assertThat(numbers.get(2)).isEqualTo(3);
-        assertThat(numbers.get(1)).isEqualTo(1);
+        assertThat(numbers.get(0)).isEqualTo(1);
+        assertThat(numbers.get(1)).isEqualTo(3);
+        assertThat(numbers.get(2)).isEqualTo(2);
         numbers.addFirst(5);
         assertThat(numbers.get(0)).isEqualTo(5);
         numbers.addFirst(6);
-        assertThat(numbers.get(7)).isEqualTo(6);
+        assertThat(numbers.get(0)).isEqualTo(6);
         numbers.addFirst(7);
-        assertThat(numbers.get(6)).isEqualTo(7);
+        assertThat(numbers.get(0)).isEqualTo(7);
     }
 
     @Test
@@ -47,16 +50,16 @@ public class ArrayDeque61BTest {
         numbers.addLast(2);
         numbers.addLast(3);
         numbers.addLast(1);
-        assertThat(numbers.get(3)).isEqualTo(2);
-        assertThat(numbers.get(4)).isEqualTo(3);
-        assertThat(numbers.get(5)).isEqualTo(1);
+        assertThat(numbers.get(0)).isEqualTo(2);
+        assertThat(numbers.get(1)).isEqualTo(3);
+        assertThat(numbers.get(2)).isEqualTo(1);
         numbers.addLast(6);
+        assertThat(numbers.get(3)).isEqualTo(6);
         numbers.addLast(7);
-        assertThat(numbers.get(7)).isEqualTo(7);
+        assertThat(numbers.get(4)).isEqualTo(7);
         numbers.addLast(8);
-        assertThat(numbers.get(0)).isEqualTo(8);
-        numbers.addLast(9);
-        assertThat(numbers.get(1)).isEqualTo(9);
+        assertThat(numbers.get(5)).isEqualTo(8);
+
     }
 
     @Test
@@ -79,5 +82,59 @@ public class ArrayDeque61BTest {
         numbers.addLast(3);
         assertThat(numbers.size()).isEqualTo(3);
     }
+
+    @Test
+    public void checkGetTest(){
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        assertThat(numbers.get(1)).isEqualTo(2);
+        assertThat(numbers.get(3)).isEqualTo(null);
+        assertThat(numbers.get(-1)).isEqualTo(null);
+    }
+
+    @Test
+    public void toListTest(){
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        assertThat(numbers.toList()).isEmpty();
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        assertThat(numbers.toList()).containsExactly(1,2,3);
+        numbers.addFirst(2);
+        numbers.addFirst(1);
+        assertThat(numbers.toList()).containsExactly(1,2,1,2,3);
+    }
+
+    @Test
+    public void removeFirstTest(){
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        assertThat(numbers.removeFirst()).isEqualTo(null);
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        assertThat(numbers.removeFirst()).isEqualTo(1);
+        assertThat(numbers.toList()).containsExactly(2,3);
+    }
+
+    @Test
+    public void removeLastTest(){
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        assertThat(numbers.removeLast()).isEqualTo(null);
+        numbers.addLast(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        assertThat(numbers.removeLast()).isEqualTo(3);
+        assertThat(numbers.toList()).containsExactly(1,2);
+    }
+
+    @Test
+    public void recursiveTest(){
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        //@source I asked chatGPT how to test a method that throws an exception
+        assertThrows(UnsupportedOperationException.class,() -> numbers.getRecursive(1));
+    }
+
 }
 
