@@ -28,7 +28,7 @@ public class ArrayDeque61BTest {
 //
 
     @Test
-    public void addFirstTest(){
+    public void addFirstTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         numbers.addFirst(2);
         numbers.addFirst(3);
@@ -45,7 +45,7 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void addLastTest(){
+    public void addLastTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         numbers.addLast(2);
         numbers.addLast(3);
@@ -63,7 +63,7 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void isEmptyTest(){
+    public void isEmptyTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         boolean condition = numbers.isEmpty();
         assert condition;
@@ -74,7 +74,7 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void checkSizeTest(){
+    public void checkSizeTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         assertThat(numbers.size()).isEqualTo(0);
         numbers.addLast(1);
@@ -84,7 +84,7 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void checkGetTest(){
+    public void checkGetTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         numbers.addLast(1);
         numbers.addLast(2);
@@ -95,54 +95,54 @@ public class ArrayDeque61BTest {
     }
 
     @Test
-    public void toListTest(){
+    public void toListTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         assertThat(numbers.toList()).isEmpty();
         numbers.addLast(1);
         numbers.addLast(2);
         numbers.addLast(3);
-        assertThat(numbers.toList()).containsExactly(1,2,3);
+        assertThat(numbers.toList()).containsExactly(1, 2, 3);
         numbers.addFirst(2);
         numbers.addFirst(1);
-        assertThat(numbers.toList()).containsExactly(1,2,1,2,3);
+        assertThat(numbers.toList()).containsExactly(1, 2, 1, 2, 3);
         numbers.removeFirst();
         numbers.removeFirst();
         numbers.addLast(1);
         numbers.addLast(1);
-        assertThat(numbers.toList()).containsExactly(1,2,3,1,1);
+        assertThat(numbers.toList()).containsExactly(1, 2, 3, 1, 1);
     }
 
     @Test
-    public void removeFirstTest(){
+    public void removeFirstTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         assertThat(numbers.removeFirst()).isEqualTo(null);
         numbers.addLast(1);
         numbers.addLast(2);
         numbers.addLast(3);
         assertThat(numbers.removeFirst()).isEqualTo(1);
-        assertThat(numbers.toList()).containsExactly(2,3);
+        assertThat(numbers.toList()).containsExactly(2, 3);
     }
 
     @Test
-    public void removeLastTest(){
+    public void removeLastTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         assertThat(numbers.removeLast()).isEqualTo(null);
         numbers.addLast(1);
         numbers.addLast(2);
         numbers.addLast(3);
         assertThat(numbers.removeLast()).isEqualTo(3);
-        assertThat(numbers.toList()).containsExactly(1,2);
+        assertThat(numbers.toList()).containsExactly(1, 2);
     }
 
     @Test
-    public void recursiveTest(){
+    public void recursiveTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         //@source I asked chatGPT how to test a method that throws an exception
-        assertThrows(UnsupportedOperationException.class,() -> numbers.getRecursive(1));
+        assertThrows(UnsupportedOperationException.class, () -> numbers.getRecursive(1));
     }
 
     @Test
-    public void resizeUpTest(){
+    public void resizeTest() {
         Deque61B<Integer> numbers = new ArrayDeque61B<>();
         numbers.addLast(1);
         numbers.addLast(2);
@@ -153,8 +153,30 @@ public class ArrayDeque61BTest {
         numbers.addLast(1);
         numbers.addLast(2);
         numbers.addLast(3);
-        assertThat(numbers.toList()).containsExactly(1,2,3,1,2,3,1,2,3);
+        assertThat(numbers.toList()).containsExactly(1, 2, 3, 1, 2, 3, 1, 2, 3);
     }
 
+    @Test
+    public void resizeDownTest() {
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        numbers.addLast(2);
+        numbers.addLast(3);
+        numbers.addLast(4);
+        numbers.addLast(5);
+        numbers.addLast(6);
+        numbers.addLast(7);
+        numbers.addLast(8);
+        numbers.addLast(9);
+        numbers.addLast(10);
+        numbers.addFirst(1);
+        numbers.removeLast();
+        numbers.removeFirst();
+        numbers.removeLast();
+        numbers.removeLast();
+        numbers.removeLast();
+        numbers.removeFirst();
+        numbers.removeLast();
+        assertThat(numbers.toList()).containsExactly(3, 4, 5);
+    }
 }
 

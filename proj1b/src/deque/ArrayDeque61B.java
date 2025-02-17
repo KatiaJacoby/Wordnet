@@ -46,7 +46,7 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
        List<T> returnList = new ArrayList<>();
        int start = Math.floorMod(firstIndex+1,capacity);
        for (int i = start; i < start + size; i++){
-           returnList.add(items[i]);
+           returnList.add(items[Math.floorMod(i,capacity)]);
        }
        return returnList;
     }
@@ -108,26 +108,31 @@ public class ArrayDeque61B<T> implements Deque61B<T>{
     public void resize() {
         double rFactor = 1;
         if (size >= 8) {
-            if ((size / items.length) < 0.25) {
+            double val = (double)size/items.length;
+            if (val < 0.25) {
                 rFactor = 0.5;
             }
             if (size == capacity) {
                 rFactor = 2;
             }
+        }
 
-            int newSize = (int)(rFactor * capacity);
-            T[] newItems = (T[]) new Object[newSize];
-            int start = Math.floorMod(firstIndex+1,capacity);
-            int index = newSize/2-1;
-            firstIndex = index - 1;
-            for (int i = start; i < start + size; i++){
-                newItems[index] = items[i];
-                index++;
+            if (rFactor != 1){
+                int newSize = (int)(rFactor * capacity);
+                T[] newItems = (T[]) new Object[newSize];
+                int start = Math.floorMod(firstIndex+1,capacity);
+                int index = 0;
+                this.firstIndex = newSize-1;
+                for (int i = start; index < size; i++){
+                    newItems[index] = items[Math.floorMod(i,capacity)];
+                    index++;
+                }
+                this.lastIndex = size;
+                this.items = newItems;
+                this.capacity = items.length;
+
             }
-            lastIndex = index + 1;
-            items = newItems;
-            capacity = items.length;
 
         }
     }
-}
+
