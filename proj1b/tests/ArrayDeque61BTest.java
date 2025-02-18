@@ -1,11 +1,13 @@
 import deque.ArrayDeque61B;
 
 import deque.Deque61B;
+import deque.LinkedListDeque61B;
 import jh61b.utils.Reflection;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Field;
+import java.util.Iterator;
 import java.util.List;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -177,6 +179,40 @@ public class ArrayDeque61BTest {
         numbers.removeFirst();
         numbers.removeLast();
         assertThat(numbers.toList()).containsExactly(3, 4, 5);
+    }
+
+    @Test
+    public void iteratorArrayTest() {
+        Deque61B<Integer> numbers = new ArrayDeque61B<>();
+        numbers.addLast(2);
+        numbers.addLast(3);
+        numbers.addLast(4);
+        numbers.addLast(5);
+        Iterator<Integer> seer = numbers.iterator();
+        assertThat(seer.next()).isEqualTo(2);
+        boolean condition = seer.hasNext();
+        assert condition;
+        assertThat(seer.next()).isEqualTo(3);
+        seer.next();
+        seer.next();
+        condition = seer.hasNext();
+        assert !condition;
+    }
+
+    @Test
+    public void iteratorLinkedListTest() {
+        Deque61B<Integer> numbers = new LinkedListDeque61B<>();
+        numbers.addFirst(1);
+        numbers.addLast(2);
+        numbers.addFirst(0);
+        Iterator<Integer> seer = numbers.iterator();
+        assertThat(seer.next()).isEqualTo(0);
+        boolean condition = seer.hasNext();
+        assert condition;
+        seer.next();
+        seer.next();
+        condition = seer.hasNext();
+        assert !condition;
     }
 }
 
