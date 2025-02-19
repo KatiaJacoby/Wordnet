@@ -3,7 +3,6 @@ package deque;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class LinkedListDeque61B<T> implements Deque61B<T> {
 
@@ -151,7 +150,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
                 start = start.next;
                 return (start.prev.value);
             } else {
-                throw new NoSuchElementException();
+                return null;
             }
         }
     }

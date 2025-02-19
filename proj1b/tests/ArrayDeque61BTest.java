@@ -350,7 +350,7 @@ public class ArrayDeque61BTest {
         seer.next();
         condition = seer.hasNext();
         assert !condition;
-        assertThrows(NoSuchElementException.class, () -> seer.next());
+        assertThat(seer.next()).isEqualTo(null);
     }
 
     @Test
@@ -367,7 +367,7 @@ public class ArrayDeque61BTest {
         seer.next();
         condition = seer.hasNext();
         assert !condition;
-        assertThrows(NoSuchElementException.class, () -> seer.next());
+        assertThat(seer.next()).isEqualTo(null);
     }
 
     @Test

@@ -3,7 +3,6 @@ package deque;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 
 public class ArrayDeque61B<T> implements Deque61B<T> {
     private T[] items;
@@ -156,7 +155,7 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
                 index = Math.floorMod(index + 1, capacity);
                 return items[index];
             } else {
-                throw new NoSuchElementException();
+                return null;
             }
 
         }
