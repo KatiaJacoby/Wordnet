@@ -214,5 +214,54 @@ public class ArrayDeque61BTest {
         condition = seer.hasNext();
         assert !condition;
     }
+
+    @Test
+    public void arrayEqualsTest(){
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+        Deque61B<String> lld2 = new LinkedListDeque61B<>();
+
+        lld1.addLast("front");
+        lld1.addLast("middle");
+        lld1.addLast("back");
+
+        lld2.addLast("front");
+        lld2.addLast("middle");
+        lld2.addLast("back");
+
+        assertThat(lld1).isEqualTo(lld2);
+
+        Deque61B<Integer> lld3 = new ArrayDeque61B<>();
+        Deque61B<Integer> lld4 = new ArrayDeque61B<>();
+
+        lld3.addLast(1);
+        lld3.addLast(2);
+        lld3.addLast(3);
+
+        lld4.addLast(1);
+        lld4.addLast(2);
+        lld4.addLast(2);
+
+        assertThat(lld3).isNotEqualTo(lld4);
+    }
+
+    @Test
+    public void toStringTest(){
+        Deque61B<String> lld1 = new LinkedListDeque61B<>();
+
+        lld1.addLast("front");
+        lld1.addLast("middle");
+        lld1.addLast("back");
+
+        Deque61B<Integer> lld4 = new ArrayDeque61B<>();
+
+        lld4.addLast(1);
+        lld4.addLast(2);
+        lld4.addLast(3);
+
+        assertThat(lld1.toString()).isEqualTo("[front, middle, back]");
+        assertThat(lld4.toString()).isEqualTo("[1, 2, 3]");
+    }
+
+
 }
 

@@ -159,6 +159,21 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Iterable<?>) {
+            return defaultEquals(this, (Iterable<?>) obj);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return this.toList().toString();
+    }
+
 }
 
 

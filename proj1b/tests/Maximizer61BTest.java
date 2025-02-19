@@ -15,12 +15,39 @@ public class Maximizer61BTest {
         }
     }
 
-//    @Test
-//    public void basicTest() {
-//        ArrayDeque61B<String> ad = new ArrayDeque61B<>();
-//        ad.addFirst("");
-//        ad.addFirst("2");
-//        ad.addFirst("fury road");
-//        assertThat(Maximizer61B.max(ad, new StringLengthComparator())).isEqualTo("fury road");
-//    }
+    @Test
+    public void basicTest() {
+        ArrayDeque61B<String> ad = new ArrayDeque61B<>();
+        ad.addFirst("");
+        ad.addFirst("2");
+        ad.addFirst("fury road");
+        assertThat(Maximizer61B.max(ad, new StringLengthComparator())).isEqualTo("fury road");
+
+        ArrayDeque61B<Integer> ad2 = new ArrayDeque61B<>();
+        ad2.addFirst(1);
+        ad2.addFirst(0);
+        ad2.addLast(2);
+        assertThat(Maximizer61B.max(ad2)).isEqualTo(2);
+
+    }
+
+    public class integerComparator implements Comparator<Integer> {
+        @Override
+        public int compare(Integer a, Integer b){
+            return (a-b);
+        }
+
+    }
+
+    @Test
+    public void comparatorTest(){
+        ArrayDeque61B<Integer> ad2 = new ArrayDeque61B<>();
+        ad2.addFirst(1);
+        ad2.addFirst(0);
+        ad2.addLast(2);
+        assertThat(Maximizer61B.max(ad2, new integerComparator())).isEqualTo(2);
+    }
+
+
+
 }

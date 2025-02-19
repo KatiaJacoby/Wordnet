@@ -1,5 +1,6 @@
 package deque;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -77,4 +78,18 @@ public interface Deque61B<T> extends Iterable<T> {
      * @return element at {@code index} in the deque
      */
     T getRecursive(int index);
+
+    default boolean defaultEquals(Iterable obj1, Iterable obj2){
+            Iterator<?> iterobj1 = obj1.iterator();
+            Iterator<?> iterobj2 = obj2.iterator();
+            while (iterobj1.hasNext() && iterobj2.hasNext()) {
+                if (iterobj1.next() != iterobj2.next()) {
+                    return false;
+                }
+            }
+            return (!iterobj1.hasNext() && !iterobj2.hasNext());
+    }
+
 }
+
+

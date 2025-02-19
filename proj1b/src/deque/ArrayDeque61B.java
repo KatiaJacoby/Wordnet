@@ -170,18 +170,15 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Iterable<?>) {
-            Iterator<T> iterobj = obj.iterator();
-            Iterator<T> iterself = this.iterator();
-            if (this.size == obj.size) {
-                while (iterobj.hasNext()) {
-                    if (iterobj.next() != iterself.next()) {
-                        return false;
-                    }
-                }
-                return true;
-            }
+            return defaultEquals(this, (Iterable<?>) obj);
+        } else {
+            return false;
         }
-        return false;
+    }
+
+    @Override
+    public String toString(){
+        return this.toList().toString();
     }
 
 
