@@ -31,6 +31,15 @@ public class Maximizer61BTest {
 
     }
 
+    @Test
+    public void comparableTest(){
+        ArrayDeque61B<Integer> numbers = new ArrayDeque61B<>();
+        numbers.addFirst(1);
+        numbers.addLast(2);
+        numbers.addLast(3);
+        assertThat(Maximizer61B.max(numbers)).isEqualTo(3);
+    }
+
     public class integerComparator implements Comparator<Integer> {
         @Override
         public int compare(Integer a, Integer b){

@@ -1,5 +1,4 @@
 package deque;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -13,7 +12,7 @@ public class Maximizer61B {
      */
     public static <T extends Comparable<T>> T max(Iterable<T> iterable) {
         Iterator<T> seer = iterable.iterator();
-        if (!seer.hasNext()){
+        if (!seer.hasNext()) {
             return null;
         }
 
@@ -43,15 +42,15 @@ public class Maximizer61B {
     public static <T> T max(Iterable<T> iterable, Comparator<T> comp) {
         Iterator<T> seer = iterable.iterator();
 
-        if (!seer.hasNext()){
+        if (!seer.hasNext()) {
             return null;
         }
 
         T max = seer.next();
 
-        while (seer.hasNext()){
+        while (seer.hasNext()) {
             T temp = seer.next();
-            if ((comp.compare(max, temp))<0){
+            if ((comp.compare(max, temp)) < 0) {
                 max = temp;
             }
         }

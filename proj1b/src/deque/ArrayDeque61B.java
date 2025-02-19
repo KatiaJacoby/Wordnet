@@ -2,7 +2,6 @@ package deque;
 
 import java.util.Iterator;
 import java.util.List;
-import java.lang.Math;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -149,11 +148,7 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
         }
 
         public boolean hasNext() {
-            if (items[Math.floorMod(index + 1, capacity)] == null) {
-                return false;
-            } else {
-                return true;
-            }
+            return items[Math.floorMod(index + 1, capacity)] != null;
         }
 
         public T next() {
@@ -177,7 +172,7 @@ public class ArrayDeque61B<T> implements Deque61B<T> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.toList().toString();
     }
 

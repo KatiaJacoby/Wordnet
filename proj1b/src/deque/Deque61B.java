@@ -79,17 +79,19 @@ public interface Deque61B<T> extends Iterable<T> {
      */
     T getRecursive(int index);
 
-    default boolean defaultEquals(Iterable obj1, Iterable obj2){
-            Iterator<?> iterobj1 = obj1.iterator();
-            Iterator<?> iterobj2 = obj2.iterator();
-            while (iterobj1.hasNext() && iterobj2.hasNext()) {
-                if (iterobj1.next() != iterobj2.next()) {
-                    return false;
-                }
+    default boolean defaultEquals(Iterable obj1, Iterable obj2) {
+        Iterator<?> iterobj1 = obj1.iterator();
+        Iterator<?> iterobj2 = obj2.iterator();
+        if (!iterobj1.hasNext() || !iterobj2.hasNext()){
+            return false;
+        }
+        while (iterobj1.hasNext() && iterobj2.hasNext()) {
+            if (iterobj1.next() != iterobj2.next()) {
+                return false;
             }
-            return (!iterobj1.hasNext() && !iterobj2.hasNext());
+        }
+        return (!iterobj1.hasNext() && !iterobj2.hasNext());
     }
-
 }
 
 

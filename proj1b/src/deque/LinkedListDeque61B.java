@@ -139,19 +139,15 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
 
     private class LinkedListDeque61BIterator implements Iterator<T> {
         Node start;
-        public LinkedListDeque61BIterator(){
-           start = sentinel.next;
+        public LinkedListDeque61BIterator() {
+            start = sentinel.next;
         }
 
         public boolean hasNext() {
-            if (start != sentinel) {
-                return true;
-            } else {
-                return false;
-            }
+            return start != sentinel;
         }
-        public T next(){
-            if (hasNext()){
+        public T next() {
+            if (hasNext()) {
                 start = start.next;
                 return (start.prev.value);
             } else {
@@ -170,7 +166,7 @@ public class LinkedListDeque61B<T> implements Deque61B<T> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.toList().toString();
     }
 
