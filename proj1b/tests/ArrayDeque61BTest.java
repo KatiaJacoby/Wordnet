@@ -134,6 +134,9 @@ public class ArrayDeque61BTest {
         numbers.removeLast();
         condition = numbers.isEmpty();
         assert condition;
+        numbers.addFirst(2);
+        assertThat(numbers.get(0)).isEqualTo(2);
+
 
     }
 

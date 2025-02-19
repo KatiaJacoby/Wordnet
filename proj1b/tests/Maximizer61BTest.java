@@ -24,6 +24,7 @@ public class Maximizer61BTest {
         assertThat(Maximizer61B.max(ad, new StringLengthComparator())).isEqualTo("fury road");
 
         ArrayDeque61B<Integer> ad2 = new ArrayDeque61B<>();
+        assertThat(Maximizer61B.max(ad2)).isEqualTo(null);
         ad2.addFirst(1);
         ad2.addFirst(0);
         ad2.addLast(2);

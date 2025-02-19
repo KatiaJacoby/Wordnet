@@ -85,8 +85,9 @@ public interface Deque61B<T> extends Iterable<T> {
         if (!iterobj1.hasNext() || !iterobj2.hasNext()) {
             return false;
         }
+
         while (iterobj1.hasNext() && iterobj2.hasNext()) {
-            if (iterobj1.next() != iterobj2.next()) {
+            if (!iterobj1.next().equals(iterobj2.next())) {
                 return false;
             }
         }
