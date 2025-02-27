@@ -3,22 +3,27 @@ You must answer at least 4 questions, but the remaining ones are optional. The m
 ArrayDeque61B:
 
 Q: Give an example of at least one idea from the staff solution that would have made your solution better (if any).
+Maybe instead of having a firstIndex and lastIndex variable, I could have had a nextFirst and nextLast and kept track of the next value. Also, I had way too many variables in my constructor. Also, I should have had a conditional in my add and remove methods to check if I should have resized rather than always calling resize and then checking inside of the method. That seems like a waste of time.
 
 A: 
 
 Q: What's something you felt proud of in your code, if anything?
+I was proud of my efficiency in my code because although it wasn't as small and clean as the example solution, it was still pretty efficient in terms of lines of code and amount of methods created. I efficiently kept track of the size of the array as well as the index of each element.
 
 A:
 
 Q: What's something that was particularly inelegant in your code, if anything?
+I think my remove and add methods are pretty intelligent because I used floorMod to wrap around the array and ensure that I didn't have to have an extra conditional statement.
 
 A:
 
 Q: What did you learn by talking to your partner about writing ArrayDeque61B?
 
+
 A:
 
 Q: What do you wish you would have known before writing ArrayDeque61B, if anything?
+I wish I would have known how to resize my array without so many excess conditionals efficiently. I kept checking the rfactor and capacity variable and I had 4 conditionals in total. They pass in the newLength from the add/remove methods instead of having to check the value to resize to within the actual method which I think is pretty smart.
 
 A:
 
@@ -36,13 +41,17 @@ A:
 
 Q: What's something you felt proud of in your code, if anything?
 
+I feel proud of the minimal amount of variables in my Node class and the efficient way that I set it up. I set veriables to prev and next and value.
+
 A:
 
 Q: What's something that was particularly inelegant in your code, if anything?
+I think the way that I added last and added first was pretty intelligent. It's confusing to read and understand, but I like the way I thought it through while writing it because I drew out little linked list diagrams and it made me happy
 
 A:
 
 Q: What did you learn by talking to your partner about writing LinkedListDeque61B?
+
 
 A:
 
