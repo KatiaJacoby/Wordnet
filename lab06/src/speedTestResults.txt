@@ -1,0 +1,32 @@
+Test 1:
+    Please enter desired length of each string: 50
+
+    Enter # strings to insert into the maps: 100000
+    --Stack Overflow -- couldn't add 100000 strings of length 50.
+    class BSTMap: 0.06 sec
+    Java's Built-in TreeMap: 0.05 sec
+    Java's Built-in HashMap: 0.04 sec
+Test 2:
+    Enter # strings to insert into the maps: 1000000
+    --Stack Overflow -- couldn't add 1000000 strings of length 50.
+    class BSTMap: 0.95 sec
+    Java's Built-in TreeMap: 0.92 sec
+    Java's Built-in HashMap: 0.39 sec
+Test 3:
+    Enter # strings to insert into the maps: 1000000
+    --Stack Overflow -- couldn't add 1000000 strings of length 30.
+    class BSTMap: 0.74 sec
+    Java's Built-in TreeMap: 0.78 sec
+    Java's Built-in HashMap: 0.30 sec
+Test 4:
+    Please enter desired length of each string: 20
+
+    Enter # strings to insert into the maps: 1000000
+    --Stack Overflow -- couldn't add 1000000 strings of length 20.
+    class BSTMap: 0.67 sec
+    Java's Built-in TreeMap: 0.67 sec
+    Java's Built-in HashMap: 0.23 sec
+
+Observations: More number of strings leads to longer time. I find it interesting that at length 30,
+I out-perform TreeMap and HashMap, but at smaller and longer String lengths, my BSTMap implementation is slower than the
+other Maps. I'm assuming it is due to cashing.
