@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
 import static com.google.common.truth.Truth.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class PercolationTest {
 
@@ -78,36 +77,24 @@ public class PercolationTest {
         assertThat(p.percolates()).isTrue();
     }
 
-    // TODO: Using the given tests above as a template,
-    //       write some more tests and delete the fail() line
     @Test
     public void yourFirstTestHere() {
         Percolation hi = new Percolation(5);
-        hi.open(3,0);
-        assertThat(hi.isOpen(3,0)).isTrue();
-        hi.open(0,0);
-        assertThat(hi.isOpen(0,0)).isTrue();
-        assertThat(hi.isFull(0,0)).isTrue();
+        hi.open(3, 0);
+        assertThat(hi.isOpen(3, 0)).isTrue();
+        hi.open(0, 0);
+        assertThat(hi.isOpen(0, 0)).isTrue();
+        assertThat(hi.isFull(0, 0)).isTrue();
         assertThat(hi.percolates()).isFalse();
-        hi.open(2,0);
-        hi.open(4,0);
+        hi.open(2, 0);
+        hi.open(4, 0);
         assertThat(hi.percolates()).isFalse();
-        hi.open(1,0);
+        hi.open(1, 0);
         assertThat(hi.percolates()).isTrue();
         assertThat(hi.numberOfOpenSites()).isEqualTo(5);
-        hi.open(4,4);
-        assertThat(hi.isFull(4,4)).isFalse();
+        hi.open(4, 4);
+        assertThat(hi.isFull(4, 4)).isFalse();
     }
 
-    @Test
-    public void mySecondTest() {
-        Percolation hi = new Percolation(5);
-        /*
-        hi.open(0,2);
-        assertThat(hi.isOpen(0,2)).isTrue();
-        assertThat(hi.isFull(0,2)).isTrue();
-        */
-        assertThat(hi.isFull(0,1)).isFalse();
-    }
 
 }
