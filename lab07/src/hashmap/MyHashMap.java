@@ -87,8 +87,8 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
         };
 
 
-    }
 
+    }
 
     private void resize() {
         double value = ((double) N/M);
@@ -105,7 +105,6 @@ public class MyHashMap<K, V> implements Map61B<K, V> {
             this.buckets = newBuckets;
             M = M*2;
         }
-
     }
 
     private boolean putHelper(Node blep, Collection<Node>[] buckets) {
