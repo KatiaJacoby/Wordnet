@@ -3,8 +3,10 @@ import ngrams.TimeSeries;
 
 import org.junit.jupiter.api.Test;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static utils.Utils.*;
@@ -69,6 +71,7 @@ public class NGramMapTest {
         // returns the relative weight of the word academic in each year between 1999 and 2010.
         TimeSeries academicWeight = ngm.weightHistory("academic", 1999, 2010);
         assertThat(academicWeight.get(1999)).isWithin(1E-7).of(969087.0 / 22668397698.0);
+
     }
     @Test
     public void testOnLargeFile() {
@@ -99,5 +102,26 @@ public class NGramMapTest {
         double expectedFishPlusDogWeight1865 = (136497.0 + 75819.0) / 2563919231.0;
         assertThat(fishPlusDogWeight.get(1865)).isWithin(1E-10).of(expectedFishPlusDogWeight1865);
     }
+
+    @Test
+    public void lilbabyfile(){
+        NGramMap ngm = new NGramMap(SHORT_WORDS_FILE,
+                TOTAL_COUNTS_FILE);
+        TimeSeries airportWeight = ngm.weightHistory("airport");
+        double result = 175702.0/28307904288.0;
+        double freq = airportWeight.get(2007);
+        assertThat(freq).isWithin(1E-10).of(result);
+
+        List<String> words = new ArrayList<>();
+        words.add("airport");
+        words.add("request");
+        TimeSeries summedWeight = ngm.summedWeightHistory(words);
+        double result2 = ((175702+697645.0)/28307904288.0);
+        assertThat(summedWeight.get(2007)).isWithin(1E-10).of(result2);
+    }
+
+
+
+
 
 }  
