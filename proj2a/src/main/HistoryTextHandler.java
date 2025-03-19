@@ -9,7 +9,7 @@ import java.util.List;
 public class HistoryTextHandler extends NgordnetQueryHandler {
     private NGramMap thing;
 
-    public HistoryTextHandler(NGramMap map){
+    public HistoryTextHandler(NGramMap map) {
         thing = map;
     }
 
@@ -20,7 +20,7 @@ public class HistoryTextHandler extends NgordnetQueryHandler {
         int endYear = q.endYear();
         String response = "";
 
-        for (String word: words){
+        for (String word: words) {
             response += word + ": ";
             response += thing.weightHistory(word, startYear, endYear).toString() + "\n";
         }

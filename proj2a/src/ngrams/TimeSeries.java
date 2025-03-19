@@ -57,10 +57,10 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries plus(TimeSeries ts) {
         TimeSeries clone = (TimeSeries) this.clone();
-        for (Map.Entry<Integer, Double> pair:ts.entrySet()){
+        for (Map.Entry<Integer, Double> pair:ts.entrySet()) {
             int key = pair.getKey();
             double sum = pair.getValue();
-            if (this.containsKey(key)){
+            if (this.containsKey(key)) {
                 sum += this.get(key);
             }
             clone.put(key, sum);
@@ -80,9 +80,9 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries dividedBy(TimeSeries ts) {
         TimeSeries clone = (TimeSeries) this.clone();
-        for (Map.Entry<Integer, Double> pair:clone.entrySet()){
+        for (Map.Entry<Integer, Double> pair:clone.entrySet()) {
             int key = pair.getKey();
-            if (!ts.containsKey(key)){
+            if (!ts.containsKey(key)) {
                 throw new IllegalArgumentException();
             }
             double quotient = pair.getValue() / ts.get(key);

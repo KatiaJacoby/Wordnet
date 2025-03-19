@@ -21,15 +21,14 @@ public class HistoryHandler extends NgordnetQueryHandler {
 
     @Override
     public String handle(NgordnetQuery q) {
-        int startYear = q.startYear();
-        int endYear = q.endYear();
-        ArrayList<String>words = new ArrayList<>(q.words());
-        TimeSeries firstPlot = thing.countHistory(words.get(0), startYear, endYear);
-        TimeSeries secondPlot = thing.countHistory(words.get(1), startYear, endYear);
-        ArrayList<TimeSeries> lts = new ArrayList<>();
-        lts.add(firstPlot);
-        lts.add(secondPlot);
-        XYChart chart = Plotter.generateTimeSeriesChart(words, lts);
+        startYear = q.startYear();
+        endYear = q.endYear();
+        words = new ArrayList<>(q.words());
+        ArrayList<TimeSeries> plots = new ArrayList<>();
+        for (String word: words) {
+            plots.add(thing.countHistory(word, startYear, endYear));
+        }
+        XYChart chart = Plotter.generateTimeSeriesChart(words, plots);
         String encodedImage = Plotter.encodeChartAsString(chart);
         return encodedImage;
     }

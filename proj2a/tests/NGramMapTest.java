@@ -116,7 +116,7 @@ public class NGramMapTest {
         words.add("airport");
         words.add("request");
         TimeSeries summedWeight = ngm.summedWeightHistory(words);
-        double result2 = ((175702+697645.0)/28307904288.0);
+        double result2 = ((175702+697645.0) / 28307904288.0);
         assertThat(summedWeight.get(2007)).isWithin(1E-10).of(result2);
     }
 

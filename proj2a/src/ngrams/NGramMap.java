@@ -95,8 +95,8 @@ public class NGramMap {
         if (!wordMap.containsKey(word)) {
             return new TimeSeries();
         }
-        try{
-            TimeSeries stuff = new TimeSeries(wordMap.get(word),startYear, endYear);
+        try {
+            TimeSeries stuff = new TimeSeries(wordMap.get(word), startYear, endYear);
             return (stuff.dividedBy(countMap));
         } catch (IllegalArgumentException e) {
             return new TimeSeries();
@@ -109,7 +109,7 @@ public class NGramMap {
      * TimeSeries.
      */
     public TimeSeries weightHistory(String word) {
-        return(weightHistory(word, MIN_YEAR, MAX_YEAR));
+        return (weightHistory(word, MIN_YEAR, MAX_YEAR));
     }
 
     /**
@@ -127,7 +127,7 @@ public class NGramMap {
                 curr = curr.plus(new TimeSeries(wordMap.get(currWord), startYear, endYear));
             }
         }
-        try{
+        try {
             return curr.dividedBy(countMap);
         } catch (IllegalArgumentException e) {
             return new TimeSeries();

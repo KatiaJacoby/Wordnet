@@ -64,7 +64,7 @@ public class TimeSeriesTest {
     }
 
     @Test
-    public void testDividedBy(){
+    public void testDividedBy() {
         TimeSeries catPopulation = new TimeSeries();
         catPopulation.put(1, 1.0);
         catPopulation.put(2, 2.0);
