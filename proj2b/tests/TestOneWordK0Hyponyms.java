@@ -24,6 +24,7 @@ public class TestOneWordK0Hyponyms {
     public static final String LARGE_HYPONYM_FILE = "data/wordnet/hyponyms.txt";
     private static final String HYPONYMS_FILE_SUBSET = "data/wordnet/hyponyms1000-subgraph.txt";
     private static final String SYNSETS_FILE_SUBSET = "data/wordnet/synsets1000-subgraph.txt";
+    private static final String HYPONYMS_11 = "data/wordnet/hyponyms11.txt";
 
     // EECS files
     private static final String FREQUENCY_EECS_FILE = "data/ngrams/frequency-EECS.csv";
@@ -40,8 +41,36 @@ public class TestOneWordK0Hyponyms {
         NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
         String actual = studentHandler.handle(nq);
         String expected = "[act, action, change, demotion, human_action, human_activity, variation]";
+        //String expected = "[act, action, change, demotion, variation]";
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    public void testChangeK0() {
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymsHandler(
+                WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, HYPONYMS_11);
+        List<String> words = new ArrayList<>();
+        words.add("change");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[alteration, change, modification, variation]";
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void testAirport() {
+        NgordnetQueryHandler studentHandler = AutograderBuddy.getHyponymsHandler(
+                VERY_SHORT_WORDS_FILE, TOTAL_COUNTS_FILE, SMALL_SYNSET_FILE, SMALL_HYPONYM_FILE);
+        List<String> words = new ArrayList<>();
+        words.add("airport");
+
+        NgordnetQuery nq = new NgordnetQuery(words, 0, 0, 0);
+        String actual = studentHandler.handle(nq);
+        String expected = "[airport, runway]";
+        assertThat(actual).isEqualTo(expected);
+    }
+
 
     // TODO: Add more unit tests (including edge case tests) here.
 }
